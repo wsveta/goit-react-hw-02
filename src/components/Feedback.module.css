@@ -1,0 +1,9 @@
+
+.feedbackOption {
+  display: flex;
+  gap: 5px;
+}
+
+.feedbackOption:nth-child(4) {
+  margin-top: 10px;
+}
