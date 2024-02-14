@@ -3,21 +3,22 @@ import Description from "./Description";
 import Options from "./Options";
 import Feedback from "./Feedback";
 import Notification from "./Notification";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const App = () => {
   const [opinion, setOpinion] = useState(() => {
     const savedOptions = window.localStorage.getItem("saved-options");
 
-    if(savedOptions !== null) {
-        return JSON.parse(savedOptions);
+    if (savedOptions !== null) {
+      return JSON.parse(savedOptions);
     }
 
     return { good: 0, neutral: 0, bad: 0 };
   });
 
-  window.localStorage.setItem("saved-options", JSON.stringify(opinion));
+  useEffect(() => {
+    window.localStorage.setItem("saved-options", JSON.stringify(opinion));
+  }, [opinion]);
 
   const totalFeedback = opinion.good + opinion.neutral + opinion.bad;
   const updateFeedback = (feedbackType) => {
